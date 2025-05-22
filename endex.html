@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion requise</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #222; color: #fff; text-align: center; }
+        .login-box { background: #333; padding: 30px; border-radius: 10px; margin: 80px auto; width: 320px; }
+        .login-btn { margin: 10px 0; padding: 12px 30px; border: none; border-radius: 5px; font-size: 1em; cursor: pointer; }
+        .google { background: #db4437; color: #fff; }
+        .facebook { background: #4267B2; color: #fff; }
+        .create { background: #28a745; color: #fff; }
+        #main-btn { display: none; margin-top: 30px; background: #ffc107; color: #222; }
+        #welcome { display: none; margin-top: 20px; }
+        /* ...existing code... */
+
+/* Ajoute ces animations supplémentaires à la fin de ta balise <style> */
+
+/* Effet de lumière sur hover */
+.login-btn:hover::before {
+    content: "";
+    position: absolute;
+    left: -75%;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.35) 100%);
+    transform: skewX(-25deg);
+    animation: shine 0.7s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes shine {
+    0% { left: -75%; }
+    100% { left: 120%; }
+}
+
+/* Effet rebond à l'apparition */
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.3); }
+    50% { opacity: 1; transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+.login-btn {
+    animation: appear 0.7s forwards, bounceIn 0.8s;
+}
+
+/* Ajoute un effet arc-en-ciel sur le bouton principal au hover */
+#main-btn:hover {
+    background: linear-gradient(90deg, #ff0080, #7928ca, #007bff, #00ffb8, #ffeb3b, #ff0080);
+    background-size: 400% 400%;
+    animation: rainbow 2s linear infinite;
+    color: #fff;
+    border: none;
+}
+
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+    </style>
+</head>
+<body>
+    <div class="login-box" id="loginBox">
+        <h2>Connecte-toi pour continuer</h2>
+        <button class="login-btn google" onclick="login('Google')">Se connecter avec Google</button><br>
+        <button class="login-btn facebook" onclick="login('Facebook')">Se connecter avec Facebook</button><br>
+        <button class="login-btn create" onclick="login('Compte')">Créer un compte</button>
+    </div>
+    <div id="welcome"></div>
+    <button id="main-btn" class="login-btn">Entrer sur le site principal</button>
+
+    <script>
+        function login(method) {
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('main-btn').style.display = 'inline-block';
+            document.getElementById('welcome').style.display = 'block';
+            document.getElementById('welcome').innerHTML = "Bienvenue, vous êtes connecté avec <b>" + method + "</b> !";
+        }
+        document.getElementById('main-btn').onclick = function() {
+            window.location.href = "Ayou-VS-Adem.html";
+        }
+    </script>
+</body>
+</html>
